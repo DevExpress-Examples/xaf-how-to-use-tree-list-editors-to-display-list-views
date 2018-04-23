@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application>
+	<NavigationItems>
+		<Group ID="Default">
+			<Item ID="HCategory" ViewID="HCategory_ListView" IsNewNode="True" />
+		</Group>
+	</NavigationItems>
+</Application>
