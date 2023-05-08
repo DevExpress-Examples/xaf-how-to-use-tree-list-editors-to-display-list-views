@@ -44,6 +44,7 @@ public class UseTreeListEFEFCoreDbContext : DbContext {
 	public DbSet<Project> Projects { get; set; }
 	public DbSet<ProjectArea> ProjectAreas { get; set; }
 	public DbSet<ProjectGroup> ProjectGroups { get; set; }
+	public DbSet<HCategory> HCategories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
