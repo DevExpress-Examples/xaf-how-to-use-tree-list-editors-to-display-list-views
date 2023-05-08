@@ -9,10 +9,9 @@ using System.ComponentModel;
 
 namespace HowToUseTreeListEditor.Module {
     public class ProjectArea : Category {
-        private Project project;
         protected override ITreeNode Parent {
             get {
-                return project;
+                return Project;
             }
         }
         protected override IBindingList Children {
@@ -20,9 +19,7 @@ namespace HowToUseTreeListEditor.Module {
                 return new BindingList<object>();
             }
         }
-        public ProjectArea(string name) {
-            this.Name = name;
-        }
+      
         public virtual Project Project { get; set; }
     }
 }

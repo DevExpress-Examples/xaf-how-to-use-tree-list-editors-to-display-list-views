@@ -11,9 +11,6 @@ using DevExpress.Persistent.BaseImpl.EF;
 namespace HowToUseTreeListEditor.Module {
     [DefaultClassOptions]
     public class Issue : BaseObject, ICategorizedItem {
-        public Issue(string subject) {
-            this.Subject = subject;
-        }
         public virtual CategoryWithIssues Category { get; set; }
         public virtual string Subject { get; set; }
         public virtual string Description { get; set; }

@@ -10,7 +10,6 @@ using DevExpress.Persistent.BaseImpl.EF;
 namespace HowToUseTreeListEditor.Module {
     [NavigationItem]
     public abstract class Category : BaseObject, ITreeNode {
-        private string name;
         protected abstract ITreeNode Parent {
             get;
         }

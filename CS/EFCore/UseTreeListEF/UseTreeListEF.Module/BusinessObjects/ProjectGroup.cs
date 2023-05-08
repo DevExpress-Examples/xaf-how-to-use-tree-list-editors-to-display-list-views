@@ -24,9 +24,7 @@ namespace HowToUseTreeListEditor.Module {
             }
         }
 
-        public ProjectGroup(string name) {
-            this.Name = name;
-        }
+ 
         public virtual IList<Project> Projects { get; set; }= new ObservableCollection<Project>();
     }
 }

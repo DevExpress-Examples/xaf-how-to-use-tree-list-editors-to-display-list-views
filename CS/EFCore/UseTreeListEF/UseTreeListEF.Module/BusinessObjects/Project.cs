@@ -11,10 +11,9 @@ using System.Collections.ObjectModel;
 
 namespace HowToUseTreeListEditor.Module {
     public class Project : Category {
-        private ProjectGroup projectGroup;
         protected override ITreeNode Parent {
             get {
-                return projectGroup;
+                return ProjectGroup;
             }
         }
         BindingList<ProjectArea> children;
@@ -26,10 +25,6 @@ namespace HowToUseTreeListEditor.Module {
                 return children;
             }
         }
-        public Project(string name) {
-            this.Name = name;
-        }
-
         public virtual ProjectGroup ProjectGroup { get; set; }
         public virtual IList<ProjectArea> ProjectAreas { get; set; } = new ObservableCollection<ProjectArea>();
 
