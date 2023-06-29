@@ -3,10 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseTreeListEF.Module", "UseTreeListEF.Module\UseTreeListEF.Module.csproj", "{776E87FC-8683-4C57-9111-103339646D71}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseTreeListEF.Win", "UseTreeListEF.Win\UseTreeListEF.Win.csproj", "{D9F5F8D4-9C84-4EE5-981F-C4842079A2E6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseTreeListEF.Module", "UseTreeListEF.Module\UseTreeListEF.Module.csproj", "{776E87FC-8683-4C57-9111-103339646D71}"
+EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
