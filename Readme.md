@@ -9,6 +9,7 @@
 # How to Use Tree List Editors to Display List Views
 
 This example describes how to use tree list control to show hierarchical data in XAF WinForms.
+![image](https://github.com/DevExpress-Examples/XAF_how-to-use-tree-list-editors-to-display-list-views-e1125/assets/14300209/b08d7d3e-c32d-4b73-bd2f-f537f6770871)
 
 ## Implementation Details
 
