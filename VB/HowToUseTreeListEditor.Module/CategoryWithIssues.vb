@@ -1,99 +1,111 @@
-﻿Imports System
-
 Imports DevExpress.Xpo
-
-Imports DevExpress.ExpressApp
 Imports DevExpress.Persistent.Base
 Imports DevExpress.Persistent.BaseImpl
-Imports DevExpress.Persistent.Validation
 Imports DevExpress.Persistent.Base.General
 Imports System.ComponentModel
 
 Namespace HowToUseTreeListEditor.Module
-    <NavigationItem> _
+
+    <NavigationItem>
     Public MustInherit Class CategoryWithIssues
         Inherits BaseObject
         Implements ITreeNode
 
-        <Association("CategoryWithIssues-Issues")> _
-        Public ReadOnly Property Issues() As XPCollection(Of Issue)
+        <Association("CategoryWithIssues-Issues")>
+        Public ReadOnly Property Issues As XPCollection(Of Issue)
             Get
                 Return GetCollection(Of Issue)("Issues")
             End Get
         End Property
 
-        Private allIssues_Renamed As XPCollection(Of Issue)
-        Public ReadOnly Property AllIssues() As XPCollection(Of Issue)
+        Private allIssuesField As XPCollection(Of Issue)
+
+        Public ReadOnly Property AllIssues As XPCollection(Of Issue)
             Get
-                If allIssues_Renamed Is Nothing Then
-                    allIssues_Renamed = New XPCollection(Of Issue)(Session, False)
-                    CollectIssuesRecursive(Me, allIssues_Renamed)
-                    allIssues_Renamed.BindingBehavior = CollectionBindingBehavior.AllowNone
+                If allIssuesField Is Nothing Then
+                    allIssuesField = New XPCollection(Of Issue)(Session, False)
+                    CollectIssuesRecursive(Me, allIssuesField)
+                    allIssuesField.BindingBehavior = CollectionBindingBehavior.AllowNone
                 End If
-                Return allIssues_Renamed
+
+                Return allIssuesField
             End Get
         End Property
+
         Private Sub CollectIssuesRecursive(ByVal issueCategory As CategoryWithIssues, ByVal target As XPCollection(Of Issue))
             target.AddRange(issueCategory.Issues)
-            For Each childCategory As CategoryWithIssues In issueCategory.Children
+            For Each childCategory As CategoryWithIssues In issueCategory.ChildrenProp
                 CollectIssuesRecursive(childCategory, target)
-            Next childCategory
+            Next
         End Sub
 
-        Private name_Renamed As String
-        Protected MustOverride ReadOnly Property Parent() As ITreeNode
-        Protected MustOverride ReadOnly Property Children() As IBindingList
+        Private nameField As String
+
+        Protected MustOverride ReadOnly Property ParentProp As ITreeNode
+
+        Protected MustOverride ReadOnly Property ChildrenProp As IBindingList
+
         Public Sub New(ByVal session As Session)
             MyBase.New(session)
         End Sub
-        Public Property Name() As String
+
+        Public Property NameProp As String
             Get
-                Return name_Renamed
+                Return nameField
             End Get
+
             Set(ByVal value As String)
-                SetPropertyValue("Name", name_Renamed, value)
+                SetPropertyValue("Name", nameField, value)
             End Set
         End Property
-        #Region "ITreeNode"
-        Private ReadOnly Property ITreeNode_Children() As IBindingList Implements ITreeNode.Children
+
+#Region "ITreeNode"
+        Private ReadOnly Property Children As IBindingList Implements ITreeNode.Children
             Get
-                Return Children
+                Return ChildrenProp
             End Get
         End Property
-        Private ReadOnly Property ITreeNode_Name() As String Implements ITreeNode.Name
+
+        Private ReadOnly Property Name As String Implements ITreeNode.Name
             Get
-                Return Name
+                Return NameProp
             End Get
         End Property
-        Private ReadOnly Property ITreeNode_Parent() As ITreeNode Implements ITreeNode.Parent
+
+        Private ReadOnly Property Parent As ITreeNode Implements ITreeNode.Parent
             Get
-                Return Parent
+                Return ParentProp
             End Get
         End Property
-        #End Region
+#End Region
     End Class
+
     Public Class ProjectGroupWithIssues
         Inherits CategoryWithIssues
 
-        Protected Overrides ReadOnly Property Parent() As ITreeNode
+        Protected Overrides ReadOnly Property ParentProp As ITreeNode
             Get
                 Return Nothing
             End Get
         End Property
-        Protected Overrides ReadOnly Property Children() As IBindingList
+
+        Protected Overrides ReadOnly Property ChildrenProp As IBindingList
             Get
                 Return ProjectsWithIssues
             End Get
         End Property
+
         Public Sub New(ByVal session As Session)
             MyBase.New(session)
         End Sub
+
         Public Sub New(ByVal session As Session, ByVal name As String)
             MyBase.New(session)
-            Me.Name = name
+            NameProp = name
         End Sub
-        <Association("ProjectGroupWithIssues-ProjectsWithIssues"), Aggregated> _
-        Public ReadOnly Property ProjectsWithIssues() As XPCollection(Of ProjectWithIssues)
+
+        <Association("ProjectGroupWithIssues-ProjectsWithIssues"), Aggregated>
+        Public ReadOnly Property ProjectsWithIssues As XPCollection(Of ProjectWithIssues)
             Get
                 Return GetCollection(Of ProjectWithIssues)("ProjectsWithIssues")
             End Get
@@ -103,36 +115,42 @@ Namespace HowToUseTreeListEditor.Module
     Public Class ProjectWithIssues
         Inherits CategoryWithIssues
 
+        Private projectGroupWithIssuesField As ProjectGroupWithIssues
 
-        Private projectGroupWithIssues_Renamed As ProjectGroupWithIssues
-        Protected Overrides ReadOnly Property Parent() As ITreeNode
+        Protected Overrides ReadOnly Property ParentProp As ITreeNode
             Get
-                Return projectGroupWithIssues_Renamed
+                Return projectGroupWithIssuesField
             End Get
         End Property
-        Protected Overrides ReadOnly Property Children() As IBindingList
+
+        Protected Overrides ReadOnly Property ChildrenProp As IBindingList
             Get
                 Return ProjectAreasWithIssues
             End Get
         End Property
+
         Public Sub New(ByVal session As Session)
             MyBase.New(session)
         End Sub
+
         Public Sub New(ByVal session As Session, ByVal name As String)
             MyBase.New(session)
-            Me.Name = name
+            NameProp = name
         End Sub
-        <Association("ProjectGroupWithIssues-ProjectsWithIssues")> _
-        Public Property ProjectGroupWithIssues() As ProjectGroupWithIssues
+
+        <Association("ProjectGroupWithIssues-ProjectsWithIssues")>
+        Public Property ProjectGroupWithIssues As ProjectGroupWithIssues
             Get
-                Return projectGroupWithIssues_Renamed
+                Return projectGroupWithIssuesField
             End Get
+
             Set(ByVal value As ProjectGroupWithIssues)
-                SetPropertyValue("ProjectGroupWithIssues", projectGroupWithIssues_Renamed, value)
+                SetPropertyValue("ProjectGroupWithIssues", projectGroupWithIssuesField, value)
             End Set
         End Property
-        <Association("ProjectWithIssues-ProjectAreasWithIssues"), Aggregated> _
-        Public ReadOnly Property ProjectAreasWithIssues() As XPCollection(Of ProjectAreaWithIssues)
+
+        <Association("ProjectWithIssues-ProjectAreasWithIssues"), Aggregated>
+        Public ReadOnly Property ProjectAreasWithIssues As XPCollection(Of ProjectAreaWithIssues)
             Get
                 Return GetCollection(Of ProjectAreaWithIssues)("ProjectAreasWithIssues")
             End Get
@@ -142,32 +160,37 @@ Namespace HowToUseTreeListEditor.Module
     Public Class ProjectAreaWithIssues
         Inherits CategoryWithIssues
 
+        Private projectWithIssuesField As ProjectWithIssues
 
-        Private projectWithIssues_Renamed As ProjectWithIssues
-        Protected Overrides ReadOnly Property Parent() As ITreeNode
+        Protected Overrides ReadOnly Property ParentProp As ITreeNode
             Get
-                Return projectWithIssues_Renamed
+                Return projectWithIssuesField
             End Get
         End Property
-        Protected Overrides ReadOnly Property Children() As IBindingList
+
+        Protected Overrides ReadOnly Property ChildrenProp As IBindingList
             Get
                 Return New BindingList(Of Object)()
             End Get
         End Property
+
         Public Sub New(ByVal session As Session)
             MyBase.New(session)
         End Sub
+
         Public Sub New(ByVal session As Session, ByVal name As String)
             MyBase.New(session)
-            Me.Name = name
+            NameProp = name
         End Sub
-        <Association("ProjectWithIssues-ProjectAreasWithIssues")> _
-        Public Property ProjectWithIssues() As ProjectWithIssues
+
+        <Association("ProjectWithIssues-ProjectAreasWithIssues")>
+        Public Property ProjectWithIssues As ProjectWithIssues
             Get
-                Return projectWithIssues_Renamed
+                Return projectWithIssuesField
             End Get
+
             Set(ByVal value As ProjectWithIssues)
-                SetPropertyValue("ProjectWithIssues", projectWithIssues_Renamed, value)
+                SetPropertyValue("ProjectWithIssues", projectWithIssuesField, value)
             End Set
         End Property
     End Class

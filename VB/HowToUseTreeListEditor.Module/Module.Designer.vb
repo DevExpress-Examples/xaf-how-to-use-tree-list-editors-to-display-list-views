@@ -1,5 +1,7 @@
-﻿Namespace HowToUseTreeListEditor.Module
-    Partial Public Class HowToUseTreeListEditorModule
+Namespace HowToUseTreeListEditor.[Module]
+
+    Partial Class HowToUseTreeListEditorModule
+
         ''' <summary> 
         ''' Required designer variable.
         ''' </summary>
@@ -10,14 +12,14 @@
         ''' </summary>
         ''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-            If disposing AndAlso (components IsNot Nothing) Then
-                components.Dispose()
+            If disposing AndAlso (Me.components IsNot Nothing) Then
+                Me.components.Dispose()
             End If
+
             MyBase.Dispose(disposing)
         End Sub
 
-        #Region "Component Designer generated code"
-
+#Region "Component Designer generated code"
         ''' <summary> 
         ''' Required method for Designer support - do not modify 
         ''' the contents of this method with the code editor.
@@ -29,9 +31,7 @@
             Me.AdditionalExportedTypes.Add(GetType(DevExpress.Persistent.BaseImpl.HCategory))
             Me.RequiredModuleTypes.Add(GetType(DevExpress.ExpressApp.SystemModule.SystemModule))
             Me.RequiredModuleTypes.Add(GetType(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule))
-
         End Sub
-
-        #End Region
+#End Region
     End Class
 End Namespace

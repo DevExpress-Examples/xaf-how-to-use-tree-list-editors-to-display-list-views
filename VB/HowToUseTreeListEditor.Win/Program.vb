@@ -1,41 +1,36 @@
-﻿Imports System
+Imports System
 Imports System.Configuration
 Imports System.Windows.Forms
-
 Imports DevExpress.ExpressApp
 Imports DevExpress.ExpressApp.Security
-Imports DevExpress.ExpressApp.Win
-Imports DevExpress.Persistent.Base
-Imports DevExpress.Persistent.BaseImpl
 Imports WinWebSolution.Module
 
 Namespace HowToUseTreeListEditor.Win
-    Friend NotInheritable Class Program
 
-        Private Sub New()
-        End Sub
+    Friend Module Program
 
         ''' <summary>
         ''' The main entry point for the application.
         ''' </summary>
-        <STAThread> _
-        Shared Sub Main()
-            Application.EnableVisualStyles()
+        <STAThread>
+        Sub Main()
+            Call Application.EnableVisualStyles()
             Application.SetCompatibleTextRenderingDefault(False)
             EditModelPermission.AlwaysGranted = System.Diagnostics.Debugger.IsAttached
-            Dim winApplication As New HowToUseTreeListEditorWindowsFormsApplication()
+            Dim winApplication As HowToUseTreeListEditorWindowsFormsApplication = New HowToUseTreeListEditorWindowsFormsApplication()
             winApplication.ConnectionString = CodeCentralExampleInMemoryDataStoreProvider.ConnectionString
             If ConfigurationManager.ConnectionStrings("ConnectionString") IsNot Nothing Then
                 winApplication.ConnectionString = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
             End If
+
             Try
-                DevExpress.ExpressApp.Xpo.InMemoryDataStoreProvider.Register()
-                                winApplication.ConnectionString = DevExpress.ExpressApp.Xpo.InMemoryDataStoreProvider.ConnectionString
+                Xpo.InMemoryDataStoreProvider.Register()
+                winApplication.ConnectionString = Xpo.InMemoryDataStoreProvider.ConnectionString
                 winApplication.Setup()
                 winApplication.Start()
             Catch e As Exception
                 winApplication.HandleException(e)
             End Try
         End Sub
-    End Class
+    End Module
 End Namespace
