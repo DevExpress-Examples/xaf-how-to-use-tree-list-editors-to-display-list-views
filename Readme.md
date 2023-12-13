@@ -27,7 +27,7 @@ The example uses the following techniques:
     _Files to review_:
 
     * The [Issue](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Issue.cs) class
-    * The [CategoryWithIssues](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/CategoryWithIssues.cs) class that is related to the previous class by an one-to-many relationship.
+    * The [CategoryWithIssues](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/CategoryWithIssues.cs) class that is related to the previous class by a one-to-many relationship.
 
     For details, refer to the following topic: [Categorized List](https://docs.devexpress.com/eXpressAppFramework/112838/application-shell-and-base-infrastructure/tree-list-editors/categorized-list).
 
