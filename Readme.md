@@ -37,7 +37,7 @@ The example uses the following techniques:
 
 ## Important Notes
 
-Pay attention to the following KB article: [Layout - The "Error creating window handle" error may occur when changing the MasterDeailMode option under certain circumstances](https://supportcenter.devexpress.com/ticket/details/b181657/layout-troubleshooting-the-error-creating-window-handle-or-infinite-recursion-detected).
+Pay attention to the following KB article: [Layout - There are circumstances that cause the "Error creating window handle" error to occur when you alter the MasterDeailMode option](https://supportcenter.devexpress.com/ticket/details/b181657/layout-troubleshooting-the-error-creating-window-handle-or-infinite-recursion-detected).
 
 ## Files to Review
 
