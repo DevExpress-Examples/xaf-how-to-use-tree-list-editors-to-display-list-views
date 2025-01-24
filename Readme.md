@@ -28,11 +28,12 @@ The example uses the following techniques:
     * The [Category](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Category.cs) class.
     * The `Category` class' descendants: [ProjectGroup](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/ProjectGroup.cs), [Project](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Project.cs), and [ProjectArea](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/ProjectArea.cs)
     
-    For details, refer to the following help topics: [TreeList Editors Module](https://docs.devexpress.com/eXpressAppFramework/112836/application-shell-and-base-infrastructure/tree-list-editors/tree-list-editors-module-overview) and [Display a Tree List using the ITreeNode interface](https://docs.devexpress.com/eXpressAppFramework/112837/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-tree-node-interface).
-
+    For details, refer to the following help topics: [TreeList Editors Module](https://docs.devexpress.com/eXpressAppFramework/112836/application-shell-and-base-infrastructure/tree-list-editors/tree-list-editors-module-overview) and [Display a Tree List using the ITreeNode interface](https://docs.devexpress.com/eXpressAppFramework/112837/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-tree-node-interface).  
+ **Note:** *WinForms only — In Blazor, `DxTreeListEditor` is automatically used when ITreeNode is implemented and does not need a seperate module.*  
   
+
 2. A List View that defines objects of a type that implements the [ICategorizedItem](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ICategorizedItem) interface. This view is displayed by the [CategorizedListEditor](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.CategorizedListEditor).  
-   **Note:** *WinForms only — this is still not supported in Blazor.*
+   **Note:** *WinForms only — `CategorizedListEditor` is still not supported in Blazor.*
 
     _Files to review_:
 
@@ -47,7 +48,8 @@ The example uses the following techniques:
 
 ## Important Notes
 
-Pay attention to the following KB article: [Layout - There are circumstances that cause the "Error creating window handle" error to occur when you alter the MasterDeailMode option](https://supportcenter.devexpress.com/ticket/details/b181657/layout-troubleshooting-the-error-creating-window-handle-or-infinite-recursion-detected).
+1. Pay attention to the following KB article: [Layout - There are circumstances that cause the "Error creating window handle" error to occur when you alter the MasterDeailMode option](https://supportcenter.devexpress.com/ticket/details/b181657/layout-troubleshooting-the-error-creating-window-handle-or-infinite-recursion-detected).
+2. The `CategorizedListEditor` is only supported in WinForms at the moment, this is still not yet supported in Blazor.
 
 ## Files to Review
 
