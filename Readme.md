@@ -5,29 +5,13 @@
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
 
-# XAF - How to Use Tree List Editors to Display List Views
-## Blazor:
+# XAF - How to Use Tree List Editors to Display List Views For Blazor And WinForms
+### Blazor:
 
 This example describes how to use a tree list control to show hierarchical data in XAF Blazor applications. the example uses the `DxTreeListEditor`. Note that by simply implementing  [ITreeNode](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ITreeNode) interface in the business object class, `DxTreeListEditor` will display the view automatically.
 
 <kbd>![image](https://github.com/user-attachments/assets/e2c0a24c-f396-43e7-8f6f-2098b15a0c52)</kbd>
-
-### Implementation Detail
-1. A List View that defines objects of a type that implements the [ITreeNode](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ITreeNode) interface. This view is displayed by the `DxTreeListEditor`.
- 
-    _Files to review_:
-  
-    * The [Category](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Category.cs) class.
-    * The `Category` class' descendants: [ProjectGroup](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/ProjectGroup.cs), [Project](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Project.cs), and [ProjectArea](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/ProjectArea.cs)
-  
-2. A List View that defines objects of the `HCategory` type, supplied with the Business Class Library. This view is displayed by the `TreeListEditor`. The `HCategory` class is added to the application's business model using the following API: [Ways to Add a Business class](https://docs.devexpress.com/eXpressAppFramework/112847/business-model-design-orm/ways-to-add-a-business-class).
-
-   For details, refer to the following topic: [Display a Tree List using the HCategory class](https://docs.devexpress.com/eXpressAppFramework/112839/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-category-class).  
-
-### Important note
-Blazor does not yet support the implementation of the [ICategorizedItem](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ICategorizedItem) interface or displaying views using the [CategorizedListEditor](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.CategorizedListEditor).. However, you can refer to the example below to see how it works in a WinForms application.
-
-## Winforms:
+### Winforms:
 
 This example describes how to use a tree list control to show hierarchical data in XAF WinForms applications. For this purpose, the example uses the `TreeListEditor` and `CategorizedListEditor` supplied with the [TreeListEditorsWindowsFormsModule](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.TreeListEditorsWindowsFormsModule). 
 
@@ -45,8 +29,10 @@ The example uses the following techniques:
     * The `Category` class' descendants: [ProjectGroup](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/ProjectGroup.cs), [Project](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Project.cs), and [ProjectArea](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/ProjectArea.cs)
     
     For details, refer to the following help topics: [TreeList Editors Module](https://docs.devexpress.com/eXpressAppFramework/112836/application-shell-and-base-infrastructure/tree-list-editors/tree-list-editors-module-overview) and [Display a Tree List using the ITreeNode interface](https://docs.devexpress.com/eXpressAppFramework/112837/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-tree-node-interface).
+
   
-2. A List View that defines objects of a type that implements the [ICategorizedItem](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ICategorizedItem) interface. This view is displayed by the [CategorizedListEditor](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.CategorizedListEditor).
+2. A List View that defines objects of a type that implements the [ICategorizedItem](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ICategorizedItem) interface. This view is displayed by the [CategorizedListEditor](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.CategorizedListEditor).  
+   **Note:** *WinForms only — this is still not supported in Blazor.*
 
     _Files to review_:
 
