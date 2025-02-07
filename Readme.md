@@ -5,50 +5,64 @@
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
 
-# XAF WinForms - How to Use Tree List Editors to Display List Views
+# XAF - How to Use Tree List Editors to Display List Views For ASP.NET Core Blazor And Windows Forms
 
-This example describes how to use a tree list control to show hierarchical data in XAF WinForms applications. For this purpose, the example uses the `TreeListEditor` and `CategorizedListEditor` supplied with the [TreeListEditorsWindowsFormsModule](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.TreeListEditorsWindowsFormsModule). 
+### ASP.NET Core Blazor:
+
+This example describes how to use a tree list control to show hierarchical data in an XAF ASP.NET Core Blazor applications. The example uses the `DxTreeListEditor`.
+If you implement the [ITreeNode](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ITreeNode) interface in a business object class, the `DxTreeListEditor` automatically displays the hierarchical data.
+
+<kbd>![image](https://github.com/user-attachments/assets/e2c0a24c-f396-43e7-8f6f-2098b15a0c52)</kbd>
+
+### Windows Forms
+
+This example describes how to use a tree list control to show hierarchical data in an XAF Windows Forms applications. For this purpose, the example uses the `TreeListEditor` and `CategorizedListEditor` supplied with the [TreeListEditorsWindowsFormsModule](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.TreeListEditorsWindowsFormsModule). 
 
 <kbd>![image](https://github.com/DevExpress-Examples/XAF_how-to-use-tree-list-editors-to-display-list-views-e1125/assets/14300209/b08d7d3e-c32d-4b73-bd2f-f537f6770871)</kbd>
 
-## Implementation Details
+### Implementation Details
 
 The example uses the following techniques:
 
-1. A List View that defines objects of a type that implements the [ITreeNode](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ITreeNode) interface. This view is displayed by the [TreeListEditor](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.TreeListEditor).
+1. A List View that defines objects of a type that implements the [ITreeNode](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ITreeNode) interface. XAF uses the [TreeListEditor](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.TreeListEditor) to display this View.
  
     _Files to review_:
   
     * The [Category](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Category.cs) class.
     * The `Category` class' descendants: [ProjectGroup](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/ProjectGroup.cs), [Project](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Project.cs), and [ProjectArea](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/ProjectArea.cs)
     
-    For details, refer to the following help topics: [TreeList Editors Module](https://docs.devexpress.com/eXpressAppFramework/112836/application-shell-and-base-infrastructure/tree-list-editors/tree-list-editors-module-overview) and [Display a Tree List using the ITreeNode interface](https://docs.devexpress.com/eXpressAppFramework/112837/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-tree-node-interface).
+   For more information, refer to the following help topics: [TreeList Editors Module](https://docs.devexpress.com/eXpressAppFramework/112836/application-shell-and-base-infrastructure/tree-list-editors/tree-list-editors-module-overview) and [Display a Tree List using the ITreeNode interface](https://docs.devexpress.com/eXpressAppFramework/112837/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-tree-node-interface).  
+   > **NOTE**
+   > 
+   > Windows Forms only — In ASP.NET Core Blazor, XAF uses `DxTreeListEditor` when `ITreeNode` is implemented. You do not need to add a separate module to your project.  
   
-2. A List View that defines objects of a type that implements the [ICategorizedItem](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ICategorizedItem) interface. This view is displayed by the [CategorizedListEditor](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.CategorizedListEditor).
+2. A List View that defines objects of a type that implements the [ICategorizedItem](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.General.ICategorizedItem) interface. XAF uses the [CategorizedListEditor](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.TreeListEditors.Win.CategorizedListEditor) to display this View.  
+   > **NOTE**
+   > 
+   > This is valid only for XAF Windows Forms applications. XAF ASP.NET Core Blazor does not support the `CategorizedListEditor`.
 
     _Files to review_:
 
     * The [Issue](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Issue.cs) class
-    * The [CategoryWithIssues](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/CategoryWithIssues.cs) class that is related to the previous class by a one-to-many relationship.
+    * The [CategoryWithIssues](./CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/CategoryWithIssues.cs) class that is related to the previous class by a One-to-Many relationship.
 
     For details, refer to the following topic: [Categorized List](https://docs.devexpress.com/eXpressAppFramework/112838/application-shell-and-base-infrastructure/tree-list-editors/categorized-list).
 
-3. A List View that defines objects of the `HCategory` type, supplied with the Business Class Library. This view is displayed by the `TreeListEditor`. The `HCategory` class is added to the application's business model using the following API: [Ways to Add a Business class](https://docs.devexpress.com/eXpressAppFramework/112847/business-model-design-orm/ways-to-add-a-business-class).
+3. A List View that defines objects of the `HCategory` type supplied with the Business Class Library. XAF uses the `TreeListEditor` to display this View. To add the `HCategory` class to the application's business model, use the following technique: [Ways to Add a Business class](https://docs.devexpress.com/eXpressAppFramework/112847/business-model-design-orm/ways-to-add-a-business-class).
 
-    For details, refer to the following topic: [Display a Tree List using the HCategory class](https://docs.devexpress.com/eXpressAppFramework/112839/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-category-class).
-
-## Important Notes
-
-Pay attention to the following KB article: [Layout - There are circumstances that cause the "Error creating window handle" error to occur when you alter the MasterDeailMode option](https://supportcenter.devexpress.com/ticket/details/b181657/layout-troubleshooting-the-error-creating-window-handle-or-infinite-recursion-detected).
+    For more information, refer to the following topic: [Display a Tree List using the HCategory class](https://docs.devexpress.com/eXpressAppFramework/112839/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-category-class).
 
 ## Files to Review
 
 - [Category.cs](CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Category.cs)
 - [Issue.cs](CS/EFCore/UseTreeListEF/UseTreeListEF.Module/BusinessObjects/Issue.cs)
 
-## More Example
+## Documentation
 
-* [XAF Blazor - How to Implement a TreeList Editor to Display Hierarchical Data](https://github.com/DevExpress-Examples/xaf-treelist-editor-blazor)
+* [Layout - There are circumstances that cause the "Error creating window handle" error to occur when you alter the MasterDeailMode option](https://supportcenter.devexpress.com/ticket/details/b181657/layout-troubleshooting-the-error-creating-window-handle-or-infinite-recursion-detected).
+* [TreeList Editors Module](https://docs.devexpress.com/eXpressAppFramework/112836/application-shell-and-base-infrastructure/tree-list-editors/tree-list-editors-module-overview)
+* [Display a Tree List using the ITreeNode interface](https://docs.devexpress.com/eXpressAppFramework/112837/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-tree-node-interface)
+
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
 
