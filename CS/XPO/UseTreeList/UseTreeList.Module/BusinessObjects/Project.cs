@@ -1,26 +1,15 @@
-using System;
-
 using DevExpress.Xpo;
-
-using DevExpress.ExpressApp;
-using DevExpress.Persistent.Base;
-using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
 using DevExpress.Persistent.Base.General;
 using System.ComponentModel;
 
 namespace HowToUseTreeListEditor.Module {
     public class Project : Category {
         private ProjectGroup projectGroup;
-        protected override ITreeNode Parent {
-            get {
-                return projectGroup;
-            }
+        protected override ITreeNode GetParent() {
+            return projectGroup;
         }
-        protected override IBindingList Children {
-            get {
-                return ProjectAreas;
-            }
+        protected override IBindingList GetChildren() {
+            return ProjectAreas;
         }
         public Project(Session session) : base(session) { }
         public Project(Session session, string name)
