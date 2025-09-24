@@ -1,11 +1,6 @@
-using System;
-
 using DevExpress.Xpo;
-
-using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
 using DevExpress.Persistent.Base.General;
 using System.ComponentModel;
 
@@ -21,7 +16,7 @@ namespace HowToUseTreeListEditor.Module {
         private XPCollection<Issue> allIssues;
         public XPCollection<Issue> AllIssues {
             get {
-                if(allIssues == null) {
+                if (allIssues == null) {
                     allIssues = new XPCollection<Issue>(Session, false);
                     CollectIssuesRecursive(this, allIssues);
                     allIssues.BindingBehavior = CollectionBindingBehavior.AllowNone;
@@ -31,17 +26,13 @@ namespace HowToUseTreeListEditor.Module {
         }
         private void CollectIssuesRecursive(CategoryWithIssues issueCategory, XPCollection<Issue> target) {
             target.AddRange(issueCategory.Issues);
-            foreach(CategoryWithIssues childCategory in issueCategory.Children) {
+            foreach (CategoryWithIssues childCategory in issueCategory.GetChildren()) {
                 CollectIssuesRecursive(childCategory, target);
             }
         }
         private string name;
-        protected abstract ITreeNode Parent {
-            get;
-        }
-        protected abstract IBindingList Children {
-            get;
-        }
+        protected abstract ITreeNode GetParent();
+        protected abstract IBindingList GetChildren();
         public CategoryWithIssues(Session session) : base(session) { }
         public string Name {
             get {
@@ -54,7 +45,7 @@ namespace HowToUseTreeListEditor.Module {
         #region ITreeNode
         IBindingList ITreeNode.Children {
             get {
-                return Children;
+                return GetChildren();
             }
         }
         string ITreeNode.Name {
@@ -64,21 +55,17 @@ namespace HowToUseTreeListEditor.Module {
         }
         ITreeNode ITreeNode.Parent {
             get {
-                return Parent;
+                return GetParent();
             }
         }
         #endregion
     }
     public class ProjectGroupWithIssues : CategoryWithIssues {
-        protected override ITreeNode Parent {
-            get {
-                return null;
-            }
+        protected override ITreeNode GetParent() {
+            return null;
         }
-        protected override IBindingList Children {
-            get {
-                return ProjectsWithIssues;
-            }
+        protected override IBindingList GetChildren() {
+            return ProjectsWithIssues;
         }
         public ProjectGroupWithIssues(Session session) : base(session) { }
         public ProjectGroupWithIssues(Session session, string name)
@@ -95,15 +82,11 @@ namespace HowToUseTreeListEditor.Module {
 
     public class ProjectWithIssues : CategoryWithIssues {
         private ProjectGroupWithIssues projectGroupWithIssues;
-        protected override ITreeNode Parent {
-            get {
-                return projectGroupWithIssues;
-            }
+        protected override ITreeNode GetParent() {
+            return projectGroupWithIssues;
         }
-        protected override IBindingList Children {
-            get {
-                return ProjectAreasWithIssues;
-            }
+        protected override IBindingList GetChildren() {
+            return ProjectAreasWithIssues;
         }
         public ProjectWithIssues(Session session) : base(session) { }
         public ProjectWithIssues(Session session, string name)
@@ -129,15 +112,11 @@ namespace HowToUseTreeListEditor.Module {
 
     public class ProjectAreaWithIssues : CategoryWithIssues {
         private ProjectWithIssues projectWithIssues;
-        protected override ITreeNode Parent {
-            get {
-                return projectWithIssues;
-            }
+        protected override ITreeNode GetParent() {
+            return projectWithIssues;
         }
-        protected override IBindingList Children {
-            get {
-                return new BindingList<object>();
-            }
+        protected override IBindingList GetChildren() {
+            return new BindingList<object>();
         }
         public ProjectAreaWithIssues(Session session) : base(session) { }
         public ProjectAreaWithIssues(Session session, string name)

@@ -30,22 +30,18 @@ namespace HowToUseTreeListEditor.Module {
         }
         private void CollectIssuesRecursive(CategoryWithIssues issueCategory, List<Issue> target) {
             target.AddRange(issueCategory.Issues);
-            foreach (CategoryWithIssues childCategory in issueCategory.Children) {
+            foreach (CategoryWithIssues childCategory in issueCategory.GetChildren()) {
                 CollectIssuesRecursive(childCategory, target);
             }
         }
-        protected abstract ITreeNode Parent {
-            get;
-        }
-        protected abstract IBindingList Children {
-            get;
-        }
+        protected abstract ITreeNode GetParent();
+        protected abstract IBindingList GetChildren();
 
         public virtual string Name { get; set; }
         #region ITreeNode
         IBindingList ITreeNode.Children {
             get {
-                return Children;
+                return GetChildren();
             }
         }
         string ITreeNode.Name {
@@ -55,7 +51,7 @@ namespace HowToUseTreeListEditor.Module {
         }
         ITreeNode ITreeNode.Parent {
             get {
-                return Parent;
+                return GetParent();
             }
         }
         #endregion

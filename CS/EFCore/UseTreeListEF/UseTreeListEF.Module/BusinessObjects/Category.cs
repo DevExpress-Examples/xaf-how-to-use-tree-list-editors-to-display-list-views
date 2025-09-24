@@ -1,8 +1,4 @@
-using System;
-using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
-using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
 using DevExpress.Persistent.Base.General;
 using System.ComponentModel;
 using DevExpress.Persistent.BaseImpl.EF;
@@ -10,18 +6,14 @@ using DevExpress.Persistent.BaseImpl.EF;
 namespace HowToUseTreeListEditor.Module {
     [NavigationItem]
     public abstract class Category : BaseObject, ITreeNode {
-        protected abstract ITreeNode Parent {
-            get;
-        }
-        protected abstract IBindingList Children {
-            get;
-        }
+        protected abstract ITreeNode GetParent();
+        protected abstract IBindingList GetChildren();
 
         public virtual string Name { get; set; }
         #region ITreeNode
         IBindingList ITreeNode.Children {
             get {
-                return Children;
+                return GetChildren();
             }
         }
         string ITreeNode.Name {
@@ -31,7 +23,7 @@ namespace HowToUseTreeListEditor.Module {
         }
         ITreeNode ITreeNode.Parent {
             get {
-                return Parent;
+                return GetParent();
             }
         }
         #endregion
