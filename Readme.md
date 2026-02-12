@@ -50,7 +50,7 @@ Pay attention to the following KB article: [Layout - There are circumstances tha
 
 * [XAF Blazor - How to Implement a TreeList Editor to Display Hierarchical Data](https://github.com/DevExpress-Examples/xaf-treelist-editor-blazor)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=xaf-how-to-use-tree-list-editors-to-display-list-views&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=xaf-how-to-use-tree-list-editors-to-display-list-views&~~~was_helpful=no)
 
