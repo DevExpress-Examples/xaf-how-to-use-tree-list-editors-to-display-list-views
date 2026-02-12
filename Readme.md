@@ -64,7 +64,7 @@ The example uses the following techniques:
 * [Display a Tree List using the ITreeNode interface](https://docs.devexpress.com/eXpressAppFramework/112837/application-shell-and-base-infrastructure/tree-list-editors/display-a-tree-list-using-the-tree-node-interface)
 
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=xaf-how-to-use-tree-list-editors-to-display-list-views&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=xaf-how-to-use-tree-list-editors-to-display-list-views&~~~was_helpful=no)
 
