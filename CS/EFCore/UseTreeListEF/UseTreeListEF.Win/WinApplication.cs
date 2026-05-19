@@ -18,7 +18,6 @@ public class UseTreeListEFWindowsFormsApplication : WinApplication {
 		SplashScreen = new DXSplashScreen(typeof(XafSplashScreen), new DefaultOverlayFormOptions());
         ApplicationName = "UseTreeListEF";
         CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
-        UseOldTemplates = false;
         DatabaseVersionMismatch += UseTreeListEFWindowsFormsApplication_DatabaseVersionMismatch;
         CustomizeLanguagesList += UseTreeListEFWindowsFormsApplication_CustomizeLanguagesList;
     }
